@@ -30,6 +30,7 @@ public class PaymentController {
 
     @Value("${server.port}")
     private String serverPort;
+
     @PostMapping("/payment/create")
     public CommonResult create(@RequestBody Payment payment){
         int result = paymentService.create(payment);
@@ -65,5 +66,10 @@ public class PaymentController {
         }
 
         return this.discoveryClient;
+    }
+
+    @GetMapping(value = "/payment/lb")
+    public String getPaymentLb(){
+        return serverPort;
     }
 }
