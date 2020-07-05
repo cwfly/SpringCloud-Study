@@ -19,7 +19,7 @@ public class MyLoadBalance implements LoadBalance {
         int next;
         do {
             current = atomicInteger.get();
-            next = current > Integer.MAX_VALUE?0:current+1;
+            next = current >= Integer.MAX_VALUE?0:current+1;
         }while (!atomicInteger.compareAndSet(current, next));
         System.out.println("**********第几次访问， 次数next: " + next);
         return next;
